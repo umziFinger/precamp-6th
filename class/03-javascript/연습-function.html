@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>Document</title>
+    <script>
+        const getToken =()=> {
+            const token = String(Math.floor(Math.random() * 1000000)).padStart(6, "0")
+            document.getElementById("number").innerText = token
+            document.getElementById("number").style = "color: red;"
+        }
+
+        const timer1 = ()=> {
+            timer = 179
+            setInterval(()=> {
+            
+            if(timer>=0){
+                const minutes = Math.floor(timer/60)
+                const seconds = String(timer%60).padStart(2,0)
+                timer -= 1
+                document.getElementById("timer").innerText = minutes+":"+seconds
+                }
+            else {
+                const button = document.getElementById("btn")
+                button.disabled = 'disabled'
+            }
+        },1000)
+    }
+        
+
+    </script>
+</head>
+<body>
+    <span id="number">
+        000000
+    </span>
+    <button onclick="getToken(), timer1()">
+        인증번호 전송
+    </button>
+    <div id="timer">
+        3:00
+    </div>
+    <button id="btn">
+        인증완료
+    </button>
+</body>
+</html>

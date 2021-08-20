@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>회원가입</title>
+    <script>
+
+        function check(){
+            const email = document.getElementById("email").value
+            if(email.includes("@")===false){
+                document.getElementById("emailerror").innerText = "이메일이 올바르지 않습니다."
+            }
+            else{
+                const password1 = document.getElementById("password1").value
+                const password2 = document.getElementById("password2").value
+                if(password1 !== password2) {
+                    document.getElementById("passworderror1").innerText = "비밀번호가 일치하지 않습니다."
+                    document.getElementById("passworderror2").innerText = "비밀번호가 일치하지 않습니다."
+                }
+            }
+        }
+
+        function changephone1() {
+            const phone1 = document.getElementById("phone1").value
+            if(phone1.length === 3){
+                document.getElementById("phone2").focus()
+            }
+        }
+
+        function changephone2() {
+            const phone2 = document.getElementById("phone2").value
+            if(phone2.length === 4){
+                document.getElementById("phone3").focus()
+            }
+        }
+
+        function sendauth() {
+            const token = String(Math.floor(Math.random()*1000000)).padStart(6,0)
+            document.getElementById("authnumber").innerText = token
+
+            const timer = 180
+
+            if(timer>=0){
+                const minutes = Math.floor(timer/60)
+                const seconds = String(timer%60).padStart(2,0)
+                timer -= 1
+                document.getElementById("timer").innerText = minutes+":"+seconds
+                }
+            else {
+                const authconfirm = document.getElementById("authconfirm")
+                button.disabled = 'disabled'               
+            
+        }
+
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper__header">
+            회원가입
+        </div>
+        <div class="wrapper__body">
+            <div class="wrapper__body__top">
+                <div class="textbox">
+                    <input id="email" type="text" placeholder="이메일을 입력해 주세요."/>
+                    <div id="emailerror" class="emailerror"></div>
+                    <input type="text" placeholder="이름을 입력해 주세요."/>
+                    <input id="password1" type="password" placeholder="비밀번호를 입력해 주세요."/>
+                    <div id="passworderror1" class="passworderror1"></div>
+                    <input id="password2" type="password" placeholder="비밀번호를 다시 입력해 주세요."/>
+                    <div id="passworderror2" class="passworderror2"></div>
+                </div>
+            </div>
+            <div class="wrapper__body__mid">
+                <div class="phone">
+                    <div class="phone__number">
+                        <input id="phone1" type="text" size="3" onchange="changephone1()" onkeyup="onchange()"> -
+                        <input id="phone2" type="text" size="4" onchange="changephone2()" onkeyup="onchange()"> -
+                        <input id="phone3" type="text" size="4">
+                    </div>
+                    <div class="phone__authnumber">
+                        <span id="authnumber" class="authdefault">000000</span>
+                        <button id="sendauth" class="sendauth" onclick="sendauth()">인증번호전송</button>
+                    </div>
+                    <div class="phone__authcheck">
+                        <span class="timer"> 3:00</span>
+                        <button class="authconfirm" onclick="">인증확인</button>
+                    </div>
+                </div>
+                <div class="country">
+                    <select>
+                        <option>서울</option>
+                        <option>경기</option>
+                        <option>인천</option>
+                    </select>
+                </div>
+                <input class="gender">
+                    <input type="radio" name="gender">여성</input>
+                    <input type="radio" name="gender">남성</input>
+                </div>
+                <input type="checkbox">"이용약관 개인정보 수집 및 이용, 마켓팅 활용 선택에 모두 동의합니다."</input>
+            </div>
+            <div class="wrapper__body__bottom">
+
+            </div>
+        </div>
+        <div class="wrapper__footer">
+            <button id="signup" onclick="check()">가입하기</button>
+        </div>
+    </div>
+</body>
+</html>
